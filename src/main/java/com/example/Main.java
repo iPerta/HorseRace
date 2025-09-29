@@ -15,7 +15,9 @@ public class Main {
             Race race = new Race(i + 1);
             horse[i] = new Thread(race);
             horse[i].start();
-            races.add(race);
+            synchronized (races) {
+                races.add(race);
+            }
         }
 
         for (int i = 0; i < horseNumber; i++) {
